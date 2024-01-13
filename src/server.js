@@ -9,7 +9,7 @@ const users = new Map();
 const notifyUsers = (socketId, data) => {
   [...users.values()]
     .filter((userSocket) => userSocket.id !== socketId)
-    .forEach((userSocket) => userSocket.Write(data));
+    .forEach((userSocket) => userSocket.write(data));
 };
 
 const streamProadcaster = (socket) => {

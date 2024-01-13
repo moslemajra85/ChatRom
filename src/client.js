@@ -16,10 +16,16 @@ const output = Writable({
     if (message) {
       logger(message);
     } else {
-      stdout.write('type: ');
+      stdout.write(`username: [${id.slice(0, 8)}] `.bold.bgBlue);
     }
     callback();
   },
 });
 
-process.stdin.pipe(net.connect(9000)).pipe(output);
+const enhaceoutput = new PassThrough();
+
+enhaceoutput.on('data', () => {
+  logger('type: ');
+});
+
+process.stdin.pipe(enhaceoutput).pipe(net.connect(9000)).pipe(output);
