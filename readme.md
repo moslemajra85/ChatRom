@@ -2,8 +2,10 @@
 
 ## Getting started
 
-This a `terminal based chatroom`, no third party library has been used.
-It is entirly built with node.js native modules.I've used the one of the most important node.js fetaure which is **Node.js stream** along with the **net module**.
+This  is a `terminal based chatroom`, no third party library has been used.
+It is entirly built with node.js native modules.I've used a very important node.js fetaure which is **Node.js stream** along with the **net module**.
+
+The app has **no database layer** all the users has been created in memory . it is meant to test the power of node.js streams and it will be extended in the future.
 
 **Usage**:
 
