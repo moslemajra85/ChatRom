@@ -26,9 +26,10 @@ const streamProadcaster = (socket) => {
 };
 
 const server = net.createServer((socket) => {
-  socket.write(streamProadcaster(socket));
+  socket.pipe(streamProadcaster(socket));
 });
 
+const port = process.PORT || 9000;
 server.listen(port, () =>
   console.log(
     `Server is running on port ${port} in ${process.env.NODE_ENV} mode...`
@@ -36,19 +37,19 @@ server.listen(port, () =>
   )
 );
 
-const port = process.PORT || 9000;
 server.on('connection', (socket) => {
   socket.id = randomUUID();
-  console.log(`New Connection: ${socket.id}`.bgBlue.bold.white);
+  console.log(`New Connection: ${socket.id}`.bgBlue.bold);
   users.set(socket.id, socket);
+
   socket.write(
     JSON.stringify({
       id: socket.id.slice(0, 4),
     })
   );
-});
 
-server.on('close', (socket) => {
-  console.log(`User [${socket.id}] is deconnected`.bgRed.bold.white);
-  users.delete(socket.id);
+  socket.on('close', (_) => {
+    console.log(`User [${socket.id}] deconnected`.bgRed.bold);
+    users.delete(socket.id);
+  });
 });
