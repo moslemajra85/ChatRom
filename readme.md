@@ -18,6 +18,8 @@ windows.
 
 `node src/client.js // type this command into all the opened terminal windows`
 
+__Happy Coding__!
+
 ## Demo
 
 ![demo](chat1.png)
